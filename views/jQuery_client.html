@@ -2,48 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Jquery Ajax Loading</title>
     <script src="../public/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style media="screen">
+      #sel{
+        max-width: 100%;
+        width: 30vw;
+      }
+      .col-md-12{
+        text-align:center  !important;
+        text-align-last:center;
+      }
+      .center-block{
+        font-weight:bold
+      }
+    </style>
 </head>
+
 <body>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
 
-<form id="form" action="/" method="post">
-    <select id="sel" onchange="show()">
-        <option value="0" id="select">- Select -</option>
-        <option value="1" id="thing">Thing</option>
-        <option value="2" id="animal">Animal</option>
-        <option value="3" id="all">All</option>
-    </select>
-</form>
-<div id="showImg">
-    <span id="img"></span>
-</div>
+        <h2 for="sel" class="text-center text-success">Jquery Ajax Loading</h2>
+        <hr/>
+
+          <form id="form"  class="form-group col-md-12" action="/" method="post">
+              <select id="sel" onchange="show()" class="form-control center-block">
+                  <option value="0" id="select">- Select -</option>
+                  <option value="1" id="thing">Thing</option>
+                  <option value="2" id="animal">Animal</option>
+                  <option value="3" id="all">All</option>
+              </select>
+          </form>
+
+
+        <div id="showImg" class=" col-md-12">
+            <div id="img"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 <script>
 	function show() {
 		let getValue = parseInt($('#sel').val());
-      /* $.ajax({
-       url: "/",
-       type: 'POST',
-       dataType: 'json',
-       data: {data: getValue}, // req.body phai lay data la object
-       success: function (data) {
-       console.log(data);
-       $('#img').empty();
-       for (let photo = 0; photo < data.length; photo++) {
-       $('#img').append('<img src="../public/image/' + data[photo] + '"  style="width: 200px;"/>');
-       }
 
-       }
-       }); */
-
-      //Code ngắn hơn !
 		$.post("/", {data: getValue}, function (result) {
 			$('#img').empty();
 			for (let photo = 0; photo < result.length; photo++) {
 				$('#img').append('<img src="/public/image/' + result[photo] + '"  style="width: 200px;"/>');
 			}
+      // for (let name = 0; name < result.length; name++) {
+			// 	$('#img').append('<p>'+result[name]+'</p>');
+			// }
 		})
+
 	}
 </script>
 </body>

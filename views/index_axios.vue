@@ -1,21 +1,35 @@
 <template>
     <div id="app">
-        <select v-model="selected" name="selectOpt" v-on:change="getList()">
-            <option v-for="item in selectItems" :value="item.type">{{ item.name }}</option>
-        </select>
-        <div>
-            <p>Selected: {{selected}}</p>
-            <img v-for="item in things" :src="'/public/image/' + item.photo" :alt="item.name" width="128" height="128">
+        <div class="container">
+          <div class="row">
+            <h1 class="text text-center text-success">Vue Express</h1>
+            <hr/>
+            <select v-model="selected" name="selectOpt" v-on:change="getList()" class="form-control">
+                <option v-for="item in selectItems" :value="item.type">{{ item.name }}</option>
+            </select>
+            <div>
+                <h3 class="text-center text-danger">Selected: {{selected}}</h3>
+                <display :things="things" class="center-block col-md-12" ></display>
+            </div>
+          </div>
         </div>
     </div>
 </template>
 <script>
+
 	export default {
 		data() {
 			return {
 				selected: 0,
 				things: [],
-				errorMsg: ''
+				errorMsg: '',
+        thing : {
+          border : '1px solid red'
+        },
+        animal : {
+          border  :'1px solid green'
+        }
+
 			}
 		},
 
@@ -34,3 +48,5 @@
 		}
 	}
 </script>
+<style lang="css">
+</style>
