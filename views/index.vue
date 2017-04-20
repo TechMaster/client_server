@@ -9,7 +9,7 @@
         <!--</form>-->
         <div>
             <p>Selected: {{selected}}</p>
-            <img v-for="link in showImg(selected)" :src="'/image/' + link.photo" :alt="link.name">
+            <img v-for="link in showImg(selected)" :src="'/public/image/' + link.photo" :alt="link.name">
         </div>
         
 
