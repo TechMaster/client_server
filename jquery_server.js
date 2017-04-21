@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const path = require("path");
 
-const allthings = require('./model/thing.js').allthings;
-const getThing = require('./model/thing.js').getThing;
+
+const Things = require('./model/things.js').Things;
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -20,15 +20,18 @@ app.get('/',function(req,res){
 
 app.post('/',function(req,res){
     let photo =[];
+    let name = [];
     let type = req.body.data;
-    let data = getThing(type,allthings);
+    let data = Things.getThing(type);
 
     for (var index = 0; index < data.length; index++) {
-      let image = data[index].photo;
-      photo.push(image);
+      let image = {photo : data[index].photo, name : data[index].name}
+      photo.push(image.photo);
+      name.push(image.name);
     }
+    res.json(photo)
     console.log(photo);
-    res.json(photo);
+    console.log(name);
 });
 
 

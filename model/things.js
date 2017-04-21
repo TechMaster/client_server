@@ -35,6 +35,4 @@ class Things {
 	}
 }
 
-module.exports = new Things()
-
-
+module.exports = {Things : new Things()}
